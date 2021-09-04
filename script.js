@@ -105,8 +105,7 @@ class Caclulator {
   update() {
     this.currentOperandTextElement.innerText = this.currentOperand;
     if (this.operation != null) {
-      this.previousOperandTextElement.innerText =
-        `${this.previousOperand} ${this.operation}`
+      this.previousOperandTextElement.innerText = `${this.previousOperand} ${this.operation}`;
     } else {
       this.previousOperandTextElement.innerText = '';
     }
