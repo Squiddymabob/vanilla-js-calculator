@@ -30,13 +30,13 @@ class Caclulator {
    * Only allow one '.' in the string
    *
    * @param {String} number
-   * @return {String} - The updated value to display 
+   * @return {String} - The updated value to display
    * @memberof Caclulator
    */
   appendNumber(number) {
     if (number === '.' && this.currentOperand.includes('.')) {
-      return
-    };
+      return;
+    }
 
     this.currentOperand = `${this.currentOperand}${number}`;
   }
@@ -50,10 +50,10 @@ class Caclulator {
    */
   chooseOperation(operation) {
     if (this.currentOperand === '') {
-      return
+      return;
     }
     if (this.previousOperand !== '') {
-      this.compute()
+      this.compute();
     }
 
     this.operation = operation;
@@ -71,33 +71,32 @@ class Caclulator {
     const previousResult = parseFloat(this.previousOperand);
     const currentResult = parseFloat(this.currentOperand);
 
-    if (isNaN(previousResult) || isNaN(currentResult)) {
-      return
+    if (Number.isNaN(previousResult) || Number.isNaN(currentResult)) {
+      return;
     }
 
     switch (this.operation) {
       case '+':
-        result = previousResult + currentResult
-        break
+        result = previousResult + currentResult;
+        break;
       case '-':
-        result = previousResult - currentResult
-        break
+        result = previousResult - currentResult;
+        break;
       case '*':
-        result = previousResult * currentResult
-        break
+        result = previousResult * currentResult;
+        break;
       case '/':
-        result = previousResult / currentResult
-        break
+        result = previousResult / currentResult;
+        break;
       default:
-        return
+        return;
     }
 
     this.currentOperand = result.toString();
     this.operation = undefined;
     this.previousOperand = '';
-
   }
-  
+
   /**
    * Update the calculator's display to show the current result
    *
@@ -121,29 +120,29 @@ const calculator = new Caclulator(previousOperandTextElement, currentOperandText
 
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    calculator.appendNumber(button.innerText)
+    calculator.appendNumber(button.innerText);
     calculator.update();
-  })
-})
+  });
+});
 
 operationButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    calculator.chooseOperation(button.innerText)
+    calculator.chooseOperation(button.innerText);
     calculator.update();
-  })
-})
+  });
+});
 
-equalsButton.addEventListener('click',button => {
+equalsButton.addEventListener('click', (button) => {
   calculator.compute();
   calculator.update();
-})
+});
 
-allClearButton.addEventListener('click', button => {
+allClearButton.addEventListener('click', (button) => {
   calculator.clear();
   calculator.update();
-})
+});
 
-deleteButton.addEventListener('click', button => {
+deleteButton.addEventListener('click', (button) => {
   calculator.delete();
   calculator.update();
-})
+});
